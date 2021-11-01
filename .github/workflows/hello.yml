@@ -30,7 +30,7 @@ jobs:
         run: echo Hello, world!
       
       - name: Now it is
-        run: echo data
+        run: echo date
       
       - name: Directory content
         run: ls -l
