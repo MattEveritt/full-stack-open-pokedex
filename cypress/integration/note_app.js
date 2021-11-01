@@ -6,4 +6,8 @@ describe('Pokedex', function () {
       'Pokémon and Pokémon character names are trademarks of Nintendo.'
     )
   })
+  it('pokemon page can be navigated to', function () {
+    cy.contains('caterpie').click()// eslint-disable-line
+    cy.contains('shield dust')// eslint-disable-line
+  })
 })
