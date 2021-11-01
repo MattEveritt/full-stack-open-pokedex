@@ -34,3 +34,4 @@ jobs:
           heroku_email: "meeveritt@gmail.com"
           healthcheck: "https://enigmatic-escarpment-69455.herokuapp.com/health"
           checkstring: "ok"
+          rollbackonhealthcheckfailed: true
