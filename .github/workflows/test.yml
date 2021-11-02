@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - matt
 
 jobs:
   a_test_job:
