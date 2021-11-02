@@ -43,7 +43,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Bump version and push tag
         uses: anothrNick/github-tag-action@1.33.0
-        if: ${{ github.event_name == 'pull_request' || contains(toJson(github.event.commits.*.message), join(#skip))}}
+        if: ${{ github.event_name == 'pull_request' || contains(toJson(github.event.commits.*.message), join('#skip'))}}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
