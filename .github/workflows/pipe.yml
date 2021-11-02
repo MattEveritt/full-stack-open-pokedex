@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - matt
   pull_request:
     branches: [master]
     types: [opened,synchronize]
@@ -31,7 +32,7 @@ jobs:
           start: npm run start-prod
           wait-on: http://localhost:5000
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
-        if: ${{ github.event_name == 'push' }}
+        if: ${{ github.event_name == 'pull_request' || contains(toJson(github.event.commits.*.message), join(#skip))}}
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "enigmatic-escarpment-69455" #Must be unique in Heroku
@@ -39,9 +40,10 @@ jobs:
           healthcheck: "https://enigmatic-escarpment-69455.herokuapp.com/health"
           checkstring: "ok"
           rollbackonhealthcheckfailed: true
+      - uses: actions/checkout@v2
       - name: Bump version and push tag
         uses: anothrNick/github-tag-action@1.33.0
-        if: ${{ github.event_name == 'push' }}
+        if: ${{ github.event_name == 'pull_request' || contains(toJson(github.event.commits.*.message), join(#skip))}}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
